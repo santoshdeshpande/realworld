@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import "github.com/santoshdeshpande/realworld/pkg/api"
 
 func main() {
-	fmt.Println("Hello World")
+
+	srv, _ := api.NewServer(3000)
+	srv.Start()
+
+	// fmt.Println("Hello World")
 }
