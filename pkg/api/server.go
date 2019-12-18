@@ -15,6 +15,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/santoshdeshpande/realworld/pkg/api/users"
 	"github.com/santoshdeshpande/realworld/pkg/mw"
 )
 
@@ -36,6 +37,9 @@ func NewServer(port int) (*Server, error) {
 	r.Use(middleware.RequestID)
 	r.Use(mw.Logger(logger))
 	r.Get("/", indexHandler)
+	// us := &users.UserService{}
+	ur := users.NewUserResource(logger)
+	r.Mount("/users", ur.Routes())
 	address := fmt.Sprintf(":%d", port)
 
 	errorLog, _ := zap.NewStdLogAt(logger, zap.ErrorLevel)
