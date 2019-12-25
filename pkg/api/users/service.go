@@ -6,6 +6,7 @@ import (
 
 // User the model to store the user information
 type User struct {
+	ID       int64  `json:"id,omitempty"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 	Username string `json:"username"`
@@ -22,7 +23,7 @@ func newUserService() *userService {
 func (us *userService) RegisterUser(user User) (User, error) {
 	u, err := us.repo.CreateUser(user)
 	if err != nil {
-		fmt.Println("Error...")
+		fmt.Println("Error... while handling tools.")
 	}
 	return u, nil
 }
